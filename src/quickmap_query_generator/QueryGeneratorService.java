@@ -30,7 +30,7 @@ public class QueryGeneratorService {
 		while((line = bufReader.readLine()) != null) {
 			// [0] : 서비스ID / [1] : 진료과명
 			String[] arr			= line.split("\\s*,\\s*");
-			//insert into qm_service (service_id, service_value) values (0, '감염내과');
+			//insert into qm_service (service_id, service_name) values (0, '감염내과');
 			String   insert_query	=
 					"into qm_service "
 					+ 	"(service_id, service_name)"

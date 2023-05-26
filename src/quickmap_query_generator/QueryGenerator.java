@@ -20,6 +20,12 @@ public class QueryGenerator {
 		QueryGeneratorSymptom	symptom	= new QueryGeneratorSymptom();
 		symptom.generate(path + "data_qm_symptom.txt", path + "13_symptom.sql", nSep);
 		
+		QueryGeneratorAdRequest	adrequest	= new QueryGeneratorAdRequest();
+		adrequest.generate(path + "data_qm_ad_request.txt", path + "14_ad_request.sql", nSep);
+		
+		QueryGeneratorReview	review	= new QueryGeneratorReview();
+		review.generate(path + "data_qm_review.txt", path + "15_review.sql", nSep);
+		
 		QueryGeneratorHos	genHos	= new QueryGeneratorHos();
 		genHos.generate(path + "data_qm_office_hospital.txt", path + "data_qm_service.txt", path + "20_office_hos.sql", nSep);
 		

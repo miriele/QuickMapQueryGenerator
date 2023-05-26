@@ -3,6 +3,7 @@ encoding//src/quickmap_query_generator/10_user_grade.sql=MS949
 encoding//src/quickmap_query_generator/11_office_grade.sql=MS949
 encoding//src/quickmap_query_generator/12_service.sql=MS949
 encoding//src/quickmap_query_generator/13_symptom.sql=MS949
+encoding//src/quickmap_query_generator/15_review.sql=MS949
 encoding//src/quickmap_query_generator/20_office_hos.sql=MS949
 encoding//src/quickmap_query_generator/21_office_pha.sql=MS949
 encoding/<project>=UTF-8
