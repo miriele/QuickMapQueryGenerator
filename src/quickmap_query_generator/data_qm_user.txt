@@ -24,4 +24,6 @@ www,	2,	강감찬아무개,	강감찬,	asdf
 xxx,	2,	이순신아무개,	이순신,	asdf
 yyy,	2,	대조영아무개,	대조영,	asdf
 zzz,	2,	홍아무아무개,	홍길동,	asdf
-admin,	9,	관아무개,	관리자,	asdf
+park,	9,	박관리자,	박진우,	asdf
+han,	9,	한관리자,	한태희,	asdf
+noh,	9,	노관리자,	노지윤,	asdf

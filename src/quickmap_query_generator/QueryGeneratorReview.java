@@ -41,7 +41,7 @@ public class QueryGeneratorReview {
 		
 		int		cntHos	= 18997;			// 20_office_hos.sql 파일 최하단에 total row 값
 		int		cntPha	= 5581;				// 21_office_pha.sql 파일 최하단에 total row 값
-		int		nRevMax	= arrUser.size()-1;	// 업장당 넣을 최대 review 수 // -1 : admin 제외
+		int		nRevMax	= 10;	// arrUser.size()-1;	// 업장당 넣을 최대 review 수 // -1 : admin 제외
 		int		nTotal	= 0;
 		int		cnt		= 0;				// 처리한 항목 카운트
 		
