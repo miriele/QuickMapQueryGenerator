@@ -29,20 +29,58 @@ public class QueryGeneratorAdRequest {
 
 		long	seed	= System.currentTimeMillis();
 		Random	rand	= new Random(seed);
-		
-		while((line = bufReader.readLine()) != null) {
-			// [0] : 업장 ID
-			String[] arr			= line.split("\\s*,\\s*");
-			String   insert_query	=
-					"into qm_ad_request (office_id, ad_request_start, ad_request_end, ad_request_level, ad_request_submit, ad_request_confirm)\n"
-					+ "values (" + arr[0] + ", sysdate-30, sysdate+30, " + (rand.nextInt(6)+2) + ",  sysdate-35, sysdate-35)\n";
 
-			bufWriter.write(insert_query);
-			cntTotal++;
-			
-			if(cntTotal%nSep == 0) {
-				bufWriter.write("select * from dual;\n\n");
-				bufWriter.write("insert all\n");
+		int		nMethod	= 1;	// 0 : data_qm_ad_request.txt 사용, 1 : random 수 사용
+		
+		if(nMethod == 0) {
+			while((line = bufReader.readLine()) != null) {
+				// [0] : 업장 ID
+				String[]	arr		= line.split("\\s*,\\s*");
+				int			dateAd	= rand.nextInt(120);
+				
+				String	insert_query	=
+							"into qm_ad_request (office_id, ad_request_start, ad_request_end, ad_request_level, ad_request_submit, ad_request_confirm)\n"
+						+	"values (" 
+						+		arr[0] + ", "
+						+		"sysdate - " + dateAd + ", "
+						+		"sysdate + " + dateAd + ", "
+						+		(rand.nextInt(6)+2) + ",  "
+						+		"sysdate - " + (dateAd+5) + ", "
+						+		"sysdate - " + (dateAd+5) + ")\n";
+
+				bufWriter.write(insert_query);
+				cntTotal++;
+				
+				if(cntTotal%nSep == 0) {
+					bufWriter.write("select * from dual;\n\n");
+					bufWriter.write("insert all\n");
+				}
+			}
+		} else if(nMethod == 1) {
+			int		NUM_HOS	= 18997;	// 20_office_hos.sql 파일 최하단에 total row 값
+			int		NUM_PER	= 20;		// 20%
+			int		cntMax	= (int)(NUM_HOS*NUM_PER/100);
+
+			for(int i=0 ; i<cntMax ; i++) {						// 전체의 20% 수준의 officeId로 AdRequest 데이터 생성
+				int		dateAd	= rand.nextInt(120);
+				
+				String	insert_query	=
+						  "into qm_ad_request (office_id, ad_request_start, ad_request_end, ad_request_level, ad_request_submit, ad_request_confirm)\n"
+						+ "values (" 
+						+	rand.nextInt(NUM_HOS) + ", "
+						+	"sysdate - " + dateAd + ", "
+						+	"sysdate + " + dateAd + ", "
+						+	(rand.nextInt(6)+2) + ",  "
+						+	"sysdate - " + (dateAd+5) + ", "
+						+	"sysdate - " + (dateAd+5) + ")\n";
+
+				bufWriter.write(insert_query);
+				cntTotal++;
+				
+				if(cntTotal%nSep == 0) {
+					bufWriter.write("select * from dual;\n\n");
+					bufWriter.write("insert all\n");
+				}
 			}
 		}
 		

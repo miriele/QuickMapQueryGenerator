@@ -39,9 +39,9 @@ public class QueryGeneratorReview {
 			arrUser.add(line.split("\\s*,\\s*")[0]);
 		}
 		
-		int		cntHos	= 18997;			// 20_office_hos.sql 파일 최하단에 total row 값
-		int		cntPha	= 5581;				// 21_office_pha.sql 파일 최하단에 total row 값
-		int		nRevMax	= 10;	// arrUser.size()-1;	// 업장당 넣을 최대 review 수 // -1 : admin 제외
+		int		NUM_HOS	= 18997;			// 20_office_hos.sql 파일 최하단에 total row 값
+		int		NUM_PHA	= 5581;				// 21_office_pha.sql 파일 최하단에 total row 값
+		int		NUM_REV	= 15;	// arrUser.size()-1;	// 업장당 넣을 최대 review 수 // -1 : admin 제외
 		int		nTotal	= 0;
 		int		cnt		= 0;				// 처리한 항목 카운트
 		
@@ -52,8 +52,8 @@ public class QueryGeneratorReview {
 		bwSql.write("set define off;\n\n");
 		bwSql.write("insert all\n");
 		
-		for(int i=0 ; i<cntHos ; i++) {
-			int	nRev	= rand.nextInt(nRevMax);
+		for(int i=0 ; i<NUM_HOS ; i++) {
+			int	nRev	= rand.nextInt(NUM_REV-1) + 1;	// 1개 ~ nRevMax개
 			
 			nTotal += nRev;
 			
@@ -85,8 +85,8 @@ public class QueryGeneratorReview {
 		cnt	= 0;
 		bwSql.write("insert all\n");
 		
-		for(int i=0 ; i<cntPha ; i++) {
-			int	nRev	= rand.nextInt(nRevMax);
+		for(int i=0 ; i<NUM_PHA ; i++) {
+			int	nRev	= rand.nextInt(NUM_REV-1) + 1;	// 1개 ~ nRevMax개
 			
 			nTotal += nRev;
 			

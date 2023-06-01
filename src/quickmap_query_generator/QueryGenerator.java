@@ -39,6 +39,9 @@ public class QueryGenerator {
 		QueryGeneratorAdRequest	adrequest	= new QueryGeneratorAdRequest();
 		adrequest.generate(path + "data_qm_ad_request.txt", path + "32_test_data_ad_request.sql", nSep);
 		
+		QueryGeneratorFavorite	favorite	= new QueryGeneratorFavorite();
+		favorite.generate(path + "data_qm_user.txt", path + "33_test_data_favorite.sql", nSep);
+		
 		System.out.println("Generating Query Finished");
 	}
 }

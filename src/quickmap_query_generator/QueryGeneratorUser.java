@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.util.Random;
 
 
 public class QueryGeneratorUser {
@@ -26,18 +27,22 @@ public class QueryGeneratorUser {
 		bufWriter.write("set define off;\n\n");
 		bufWriter.write("insert all\n");
 
+		long	seed	= System.currentTimeMillis();
+		Random	rand	= new Random(seed);
+
 		while((line = bufReader.readLine()) != null) {
 			// [0] : user_id / [1] : grade_id / [2] : user_nick
 			// [3] : user_name / [4] : user_passwd
 			String[] arr			= line.split("\\s*,\\s*");
 			String   insert_query	=
-					"into qm_user (user_id, grade_id, user_nick, user_name, user_passwd, user_reg)\r\n"
+					  "into qm_user (user_id, grade_id, user_nick, user_name, user_passwd, user_reg)\r\n"
 					+ "values ("
-					+ "'" + arr[0] + "', "
-					+ arr[1] + ", "
-					+ "'" + arr[2] + "', "
-					+ "'" + arr[3] + "', "
-					+ "'" + arr[4] + "', sysdate)\n";
+					+	"'" + arr[0] + "', "
+					+	arr[1] + ", "
+					+	"'" + arr[2] + "', "
+					+	"'" + arr[3] + "', "
+					+	"'" + arr[4] + "', "
+					+	"sysdate - " + rand.nextInt(365) + ")\n";
 
 			bufWriter.write(insert_query);
 			cntTotal++;
